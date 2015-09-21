@@ -1,0 +1,23 @@
+/* ---------------------------------------------------------*/
+/* --                                                     --*/
+/* --                  ATM Locator                        --*/
+/* --                                                     --*/
+/* ---------------------------------------------------------*/
+
+.atmLocator .bod .results                   { font-size: 20px; }
+.atmLocator .atmList .toggleTabs li         { width: 33%; }
+.atmLocator .atmList .errorMsg              { margin-top: 20%; text-align: center; }
+.atmLocator .atmSection                     { border-bottom: 1px solid #ececec; }
+.atmLocator .atmSection:last-child          { border: 0; }
+.atmLocator .atmSection .labelName          { display: inline-block; width: 70%; }
+.atmLocator .atmSection .distance           { display: inline-block; width: 29%; text-align: right; }
+.atmLocator .atmSection .directions         { color: #2881e2; }
+.atmLocator .atmSection .typeLabel          { padding: 3px; margin-left: 10px; }
+
+.atmLocator .searchBox                              { position: relative; text-align: right; padding-right: 38px;margin-top:20px; }
+.atmLocator .searchBox .fa.fa-arrow-circle-right    { position: absolute; top: 6px; margin-left: 10px; font-size: 1.9rem; color: #2881e2; }
+
+@media only screen and ( max-width: 420px ) {
+    .atmLocator .atmSection .labelName  { display: block; width: 100%; }
+    .atmLocator .atmSection .distance   { display: block; width: auto; text-align: left; }
+}

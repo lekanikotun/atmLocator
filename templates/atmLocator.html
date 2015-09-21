@@ -1,0 +1,58 @@
+<div class="atmLocator tier2Content">
+
+    <div class="nav tier1">
+
+        <div class="back"><%=App.Lang.GLB_back%></div>
+
+        <div class="title"><%= App.Lang.PCD_atmLocator %></div>
+
+
+    </div>
+
+    <div class="bod atmList">
+
+        <div class="toggleTabs cfx">
+            <ol>
+                <li class="sel" data-tab="all"><%=App.Lang.PCD_all%></li>
+                <li data-tab="atm"><%=App.Lang.PCD_atm%></li>
+                <li data-tab="reload"><%=App.Lang.PCD_reload%></li>
+            </ol>
+        </div>
+
+        <div class="searchBox">
+            <form novalidate>
+                <input type="search" class="searchField" placeholder="enter zip code..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </form>
+            <span class="goSearch"><i class="fa fa-arrow-circle-right"></i></span>
+        </div>
+
+        <% if (atms && atms.length) { %>
+
+            <h1><span class="count"><%= atms.length %></span><span class="results"> <%= App.Lang.PCD_results %></span></h1>
+
+            <% $.each(atms, function(i, atm) { %>
+
+                <div class="atmSection <%= atm.typeCode %>">
+
+                    <h3 class="labelName"><%=atm.labelName%></h3>
+
+                    <p class="distance"><%=atm.distance%> <%=atm.unitCode%></p>
+
+                    <p class="addLO"><%=atm.addLO%></p>
+
+                    <p class="addLT"><%=atm.addLT%></p>
+
+                    <p class="directions" data-address="<%=atm.address%>"><i class="fa fa-lg fa-map-marker"></i> <span> <%=App.Lang.PCD_directions%> </span><span class="typeLabel <%=atm.typeCode == 'atm' ? 'inv_orange' : 'inv_darkGreen'%>"><%= atm.typeLabel %></span></p>
+
+                </div>
+
+            <% }) %>
+
+        <% } else if (errorMsg) { %>
+
+            <p class="errorMsg"><%= errorMsg %></p>
+
+        <% } %>
+    </div>
+
+</div>
