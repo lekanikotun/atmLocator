@@ -21,7 +21,7 @@
                 var latitude = position.coords.latitude.toFixed(6);
                 var longitude = position.coords.longitude.toFixed(6);
 
-                App.Models.atmLocator.data.coords = { latitude: latitude, longitude: longitude }
+                App.Models.atmLocator.data.coords = { latitude: latitude, longitude: longitude };
 
                 self.getATMs(latitude, longitude);
 
@@ -29,7 +29,7 @@
 
             var error = function(err) {
 
-                App.Models.atmLocator.data.display = { atms: false, errorMsg: App.Lang.PCD_geoLocationError }
+                App.Models.atmLocator.data.display = { atms: false, errorMsg: App.Lang.PCD_geoLocationError };
                 App.Views.atmLocator.render();
 
             }
@@ -40,7 +40,7 @@
 
         getATMs: function(val1, val2) {
 
-            var url
+            var url;
 
             if (arguments.length == 1) {
 

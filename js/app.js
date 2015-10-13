@@ -12,7 +12,7 @@
 
         processAction: function() {
 
-            if (App.Config.actionProcessed) return
+            if (App.Config.actionProcessed) return;
 
             App.Config.actionProcessed = true;
             App.Models.atmLocator.cb = App.Views.atmLocator.render;
