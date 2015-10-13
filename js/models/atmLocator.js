@@ -14,109 +14,107 @@
 
             set: function(resp) {
 
-                var d = App.Models.parse(resp)
+                var d = App.Models.parse(resp);
 
                 if (d.atmLocator) {
 
-                    this.data.display = this.orchestrate(d)
-                    this.cb()
+                    this.data.display = this.orchestrate(d);
+                    this.cb();
                 }
 
             },
 
             orchestrate: function(d) {
 
-                var self = this
+                var self = this;
 
-                var arr = []
+                var arr = [];
                 $.each(d.atmLocator, function(j, atm) {
 
                     $.each(atm.locations, function(i, l) {
 
-                        var data = {}
+                        var data = {};
 
-                        data['labelName'] = l.labelName ? l.labelName : ''
+                        data['labelName'] = l.labelName ? l.labelName : '';
 
                         if (atm.locationType) {
-                            var locationType = atm.locationType
-                            data['typeCode'] = locationType.code ? locationType.code : ''
-                            data['typeLabel'] = locationType.labelName ? locationType.labelName : ''
+                            var locationType = atm.locationType;
+                            data['typeCode'] = locationType.code ? locationType.code : '';
+                            data['typeLabel'] = locationType.labelName ? locationType.labelName : '';
                         }
 
                         if (l.coordinate) {
-                            data['latitude'] = l.coordinate.latitude ? l.coordinate.latitude : ''
-                            data['longitude'] = l.coordinate.longitude ? l.coordinate.longitude : ''
+                            data['latitude'] = l.coordinate.latitude ? l.coordinate.latitude : '';
+                            data['longitude'] = l.coordinate.longitude ? l.coordinate.longitude : '';
                         }
 
                         if (l.distance) {
-                            data['unitCode'] = l.distance.unitCode ? l.distance.unitCode.substring(0,2) : '',
-                            data['distance'] = l.distance.unitValue ? l.distance.unitValue : ''
+                            data['unitCode'] = l.distance.unitCode ? l.distance.unitCode.substring(0,2) : '';
+                            data['distance'] = l.distance.unitValue ? l.distance.unitValue : '';
                         }
 
                         if (l.address) {
 
-                            var address = self.flatten(l.address, {})
+                            var address = self.flatten(l.address, {});
 
-                            var addr = []
-                            var lineOne, lineTwo = ''
+                            var addr = [];
+                            var lineOne, lineTwo = '';
 
                             if (address.lineOne)    {
-                                addr.push(address.lineOne)
-                                lineOne = address.lineOne
+                                addr.push(address.lineOne);
+                                lineOne = address.lineOne;
 
                             }
 
                             if (address.cityName)   {
-                                addr.push(address.cityName)
-                                lineTwo = address.cityName + ', '
+                                addr.push(address.cityName);
+                                lineTwo = address.cityName + ', ';
                             }
 
                             if (address.code) {
-                                addr.push(address.code)
-                                lineTwo += address.code + ', '
+                                addr.push(address.code);
+                                lineTwo += address.code + ', ';
                             }
 
                             if (address.postalCode) {
-                                addr.push(address.postalCode)
-                                lineTwo += address.postalCode
+                                addr.push(address.postalCode);
+                                lineTwo += address.postalCode;
                             }
 
-                            data['address'] = addr.join(', ')
+                            data['address'] = addr.join(', ');
 
-                            data['addLO'] = lineOne
-                            data['addLT'] = lineTwo
+                            data['addLO'] = lineOne;
+                            data['addLT'] = lineTwo;
 
                         }
 
 
-                        arr.push(data)
+                        arr.push(data);
                     })
                 })
 
                 //sort by distance
                 arr.sort(function (a, b) {
-                    if (a.distance > b.distance) return 1
-                    if (a.distance < b.distance) return -1
-                    return 0
+                    return a - b;
                 });
 
-                return { atms : arr }
+                return { atms : arr };
 
             },
 
             flatten: function(d, obj) {
-                var self = this
+                var self = this;
                 for (var key in d) {
                     if (d.hasOwnProperty(key)) {
                         if (typeof d[key] === 'object') {
-                            self.flatten(d[key], obj)
+                            self.flatten(d[key], obj);
                         } else {
-                            obj[key] = d[key]
+                            obj[key] = d[key];
                         }
                     }
                 }
 
-                return obj
+                return obj;
             }
 
         },
@@ -125,7 +123,7 @@
 
     }
 
-    $.extend( App.Models, _models )
+    $.extend( App.Models, _models );
 
 }());
 

@@ -6,7 +6,7 @@
 
         init: function () {
 
-            this.setEventObjects()
+            this.setEventObjects();
 
         },
 
@@ -14,9 +14,9 @@
 
             if (App.Config.actionProcessed) return
 
-            App.Config.actionProcessed = true
-            App.Models.atmLocator.cb = App.Views.atmLocator.render
-            App.Services.getATMLocations()
+            App.Config.actionProcessed = true;
+            App.Models.atmLocator.cb = App.Views.atmLocator.render;
+            App.Services.getATMLocations();
 
         },
 
@@ -24,8 +24,8 @@
 
     }
 
-    $.extend( App, _app )
+    $.extend( App, _app );
 
 }())
 
-Container.wakeUp()
+Container.wakeUp();

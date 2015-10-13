@@ -10,31 +10,31 @@ App.Views.atmLocator = {
 
     events: function(){
 
-        $('.atmLocator').on('click', '.atmList .toggleTabs li', this.filter)
-        $('.atmLocator').on('click', '.atmSection .directions', this.getDirections)
-        $('.atmLocator').on('click', '.atmList .goSearch', this.getATMByZip )
-        $('.atmLocator').on('submit', '.atmList .searchBox form', this.getATMByZip )
+        $('.atmLocator').on('click', '.atmList .toggleTabs li', this.filter);
+        $('.atmLocator').on('click', '.atmSection .directions', this.getDirections);
+        $('.atmLocator').on('click', '.atmList .goSearch', this.getATMByZip );
+        $('.atmLocator').on('submit', '.atmList .searchBox form', this.getATMByZip );
     },
 
     init: function(){
 
-        this.events()
+        this.events();
 
     },
 
     render: function () {
 
-        var self = App.Views.atmLocator
+        var self = App.Views.atmLocator;
 
         if (App.Models.atmLocator.data.display) {
 
-            $(self.el).html( self.template( App.Models.atmLocator.data.display ))
-            delete App.Models.atmLocator.data.display
-            self.init()
+            $(self.el).html( self.template( App.Models.atmLocator.data.display ));
+            delete App.Models.atmLocator.data.display;
+            self.init();
 
         } else {
 
-            App.Services.getATMLocations()
+            App.Services.getATMLocations();
 
         }
 
@@ -42,38 +42,38 @@ App.Views.atmLocator = {
 
     getATMByZip: function(e) {
 
-        e.preventDefault()
-        var zip = $('.searchField').val()
-        App.Views.layout.slideReset()
-        App.Services.getATMs(zip)
+        e.preventDefault();
+        var zip = $('.searchField').val();
+        App.Views.layout.slideReset();
+        App.Services.getATMs(zip);
 
     },
 
     filter: function(e) {
 
-        var $el = $(e.currentTarget)
+        var $el = $(e.currentTarget);
 
-        var t = $el.data('tab')
+        var t = $el.data('tab');
 
         if (t === 'all') {
 
-            $('.atmSection').show()
+            $('.atmSection').show();
 
         } else if (t === 'reload') {
 
-            $('.reload').show()
-            $('.atm').hide()
+            $('.reload').show();
+            $('.atm').hide();
 
         } else if (t === 'atm'){
 
-            $('.atm').show()
-            $('.reload').hide()
+            $('.atm').show();
+            $('.reload').hide();
 
         }
 
-        var count = $('.atmSection').filter(':visible').length
+        var count = $('.atmSection').filter(':visible').length;
 
-        $('.atmList .count').text(count)
+        $('.atmList .count').text(count);
 
     },
 
